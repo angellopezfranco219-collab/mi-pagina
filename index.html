@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gana Salud — Café y Productos con Ganoderma</title>
+    
+    <!-- Fuente bonita de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fffbf7;
+            color: #442f20;
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+        }
+
+        header h1 span {
+            color: #FFD700;
+        }
+
+        header .subtitulo {
+            font-size: 1.15rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        header .frase {
+            font-style: italic;
+            margin-top: 15px;
+            font-size: 1rem;
+            color: #FFE4B5;
+        }
+
+        nav {
+            background-color: #5D3A1F;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            color: #FFF8DC;
+            padding: 15px 28px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.98rem;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #8B4513;
+            color: #FFD700;
+        }
+
+        section {
+            padding: 50px 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #8B4513;
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #DEB887;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .inicio-contenido {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+            font-size: 1.08rem;
+            line-height: 1.9;
+            color: #554436;
+        }
+
+        .inicio-contenido strong {
+            color: #8B4513;
+        }
+
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .producto {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 5px 18px rgba(139, 69, 19, 0.08);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            border: 1px solid #F5DEB3;
+        }
+
+        .producto:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.12);
+        }
+
+        .producto h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            color: #654321;
+            margin-bottom: 12px;
+        }
+
+        .producto .descripcion {
+            font-size: 0.96rem;
+            color: #6B5344;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .producto .precio {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #8B4513;
+        }
+
+        .remedio {
+            background: linear-gradient(to right, #F0F8EA, #E8F5E0);
+            border-left: 5px solid #6B8E23;
+            padding: 25px 30px;
+            margin: 35px 0;
+            border-radius: 12px;
+        }
+
+        .remedio h3 {
+            font-family: 'Playfair Display', serif;
+            color: #556B2F;
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .remedio p {
+            color: #4F6641;
+            line-height: 1.8;
+        }
+
+        .seccion-fria {
+            background-color: #F8F2EB;
+        }
+
+        .seccion-ganoderma {
+            background-color: #F9F6EF;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #5D3A1F, #8B4513);
+            color: #FFF8DC;
+            text-align: center;
+            padding: 40px 25px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+            font-size: 0.98rem;
+        }
+
+        footer p.derechos {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ENCABEZADO MEJORADO -->
+    <header>
+        <div class="header-content">
+            <h1>🌿 <span>Gana</span> Salud ☕</h1>
+            <p class="subtitulo">
+                Los mejores productos naturales con el poder del <strong>Ganoderma</strong> — el hongo medicinal que ha cuidado la salud desde hace más de 2,000 años.
+                <br>Disfruta de un café delicioso que también nutre tu cuerpo.
+            </p>
+            <p class="frase">"Tu salud en cada taza, naturaleza en cada sorbo."</p>
+        </div>
+    </header>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav>
+        <ul>
+            <li><a href="#inicio">🏠 Inicio</a></li>
+            <li><a href="#frias">🥤 Bebidas Frías</a></li>
+            <li><a href="#calientes">☕ Bebidas Calientes</a></li>
+            <li><a href="#ganoderma">🍄 Productos Ganoderma</a></li>
+        </ul>
+    </nav>
+
+    <!-- INICIO -->
+    <section id="inicio">
+        <h2>Bienvenidos a Gana Salud</h2>
+        <div class="inicio-contenido">
+            <p>
+                Somos un emprendimiento nacido en <strong>Ivirgarzama, Trópico de Cochabamba</strong>, con el propósito de compartir los beneficios del <strong>Ganoderma lucidum</strong>, conocido desde la antigüedad como el "hongo de la inmortalidad".
+            </p>
+            <br>
+            <p>
+                Creemos que cuidar tu salud puede ser sencillo y delicioso. Por eso combinamos este poderoso hongo con productos que ya amas: <strong>café, capuchinos, malteadas y más</strong>. Cada taza es una oportunidad para nutrir tu cuerpo y disfrutar de un buen sabor. 💚
+            </p>
+        </div>
+    </section>
+     
+    <div class="info-ganoderma">
+       <h2>Más información de la empresa Ganoderma</h2>
+
+       <p>
+      Ganoderma es un nombre asociado a productos elaborados
+      a base del hongo Ganoderma lucidum, también conocido
+      como reishi, utilizado tradicionalmente en algunas
+      culturas asiáticas.
+       </p>
+
+      <p>
+      Este hongo es conocido por su larga historia de uso
+      tradicional y por su presencia en productos como
+      suplementos y preparados comerciales.
+      </p>
+
+      <p>
+      Conocer el origen, las características y la composición
+      de estos productos permite a los consumidores tomar
+      decisiones informadas.
+      </p>
+      </div>
+
+      <div class="imagen-ganoderma">
+      <img
+      src="c:\Users\Veronica\Pictures\Screenshot_20261011-144502.png"
+      alt="Hongo Ganoderma lucidum"
+                                   >
+     </div>
+   <style> 
+      .empresa-ganoderma {
+    display: flex;
+     align-items: center;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 25px;
+    font-family: Arial, sans-serif;
+    }
+
+   .info-ganoderma {
+    flex: 1;
+          }
+
+   .info-ganoderma h2 {
+   color: #286b3b;
+    font-size: 30px;
+    margin-bottom: 20px;
+   }
+
+   .info-ganoderma p {
+    color: #444;
+    font-size: 16px;
+    line-height: 1.8;
+   }
+
+   .imagen-ganoderma {
+  flex: 1;
+   }
+
+   .imagen-ganoderma img {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+    border-radius: 12px;
+   }
+
+   /* Diseño adaptable a celulares */
+   @media (max-width: 768px) {
+   .empresa-ganoderma {
+     flex-direction: column;
+   }
+
+   .info-ganoderma,
+   .imagen-ganoderma {
+    width: 100%;
+   }
+   }
+ </style>   
+ 
+
+
+    <!-- BEBIDAS FRÍAS --> 
+    <section id="frias" class="seccion-fria">
+        <h2>🥤 Bebidas Frías — Refrescantes y Cremosas</h2>
+        <div class="productos">
+            <div class="producto">
+                <h3>🥤 Capuchino Clásico Frío</h3>
+                  <img src="c:\Users\Veronica\Pictures\frappe-de-café-helado-cremoso-con-crema-batida-y-crujiente-chocolate-refrescamiento-la-receta-para-tomar-frío-esta-imagen-fue-388132621.jpg" alt="Capuchino Clásico Frío" style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">
+                <p class="descripcion">La suavidad del capuchino servido bien frío. Cremoso, equilibrado y refrescante para cualquier momento del día.</p>
+                <p class="precio">💰 Bs. 10</p>
+            </div>
+
+            <div class="producto">
+                <h3>🍫 Capuchino de Oreo</h3>
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv5R_S_0qNcBI5eMm4y6z6e32Cp1S10AHVMIS65RX5ma3lylqmVo6RuT4&s=10 " alt="Capuchino de Oreo" style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">  
+                <p class="descripcion">Galleta Oreo triturada mezclada con nuestro capuchino cremoso. Cubierto con crema batida y chispas de chocolate.</p>
+                <p class="precio">💰 Bs. 15</p>
+            </div>
+
+            <div class="producto">
+                <h3>🍓 Capuchino de Frutilla</h3>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlduyNNFerT_IeLqAqyOyzjWqywh31sUfL7FFM0n0t0lGq33TitwrxspI&s=10" alt="Capuchino de Frutilla" style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">  
+                <p class="descripcion">Sabor fresco y dulce de frutilla natural combinado con capuchino. Colorido, delicioso y perfecto para los días cálidos.</p>
+                <p class="precio">💰 Bs. 15</p>
+            </div>
+
+            <div class="producto">
+                <h3>🌿 Capuchino con Espirulina</h3>
+                <img src="https://previews.123rf.com/images/sisacorn/sisacorn1505/sisacorn150500018/39802362-green-tea-frappe.jpg" alt="Capuchino con Espirulina" style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">  
+                <p class="descripcion">Una bebida que te cuida: capuchino cremoso enriquecido con espirulina, fuente natural de vitaminas y energía.</p>
+                <p class="precio">💰 Bs. 12</p>
+            </div>
+
+            <div class="producto">
+                <h3>🥛 Malteada Clásica</h3>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8IySbPASBijJZ8PWczYVxkdc66P6SpZR4r-9E8LbSXK1HkN--6e7NCJI-&s=10" alt="Malteada Clásica" style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">  
+                <p class="descripcion">Sencilla y deliciosa. Preparada con leche fresca de nuestra zona. Cremosa, reconfortante y favorita de grandes y pequeños.</p>
+                <p class="precio">💰 Bs. 10</p>
+            </div>
+
+            <div class="producto">
+                <h3>🌱 Malteada con Espirulina</h3>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeXISqYl_xKpuocC8i7MJ6Zm2Ni0tMNk9NbIJg47u7Y9c1il9K7a-0tfg&s=10" alt="Malteada con Espirulina" style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">  
+                <p class="descripcion">Nutrición en cada sorbo: malteada cremosa con espirulina. Una forma rica de incluir proteínas y minerales en tu día.</p>
+                <p class="precio">💰 Bs. 12</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEBIDAS CALIENTES -->
+    <section id="calientes">
+        <h2>☕ Bebidas Calientes — Calor y Bienestar</h2>
+
+        <div class="remedio">
+            <h3>💚 ¿Sabías que nuestro café caliente es también un remedio natural?</h3>
+            <p>El Ganoderma se ha utilizado en la medicina tradicional durante más de 2,000 años. Al tomarlo caliente, tu cuerpo absorbe mejor sus nutrientes: ayuda a fortalecer tus defensas, da energía natural sin causar nerviosismo y contribuye a tu bienestar general. Empieza tu mañana con una taza calientita — ¡tu cuerpo te lo agradecerá!</p>
+        </div>
+
+        <div class="productos">
+            <div class="producto">
+                <h3>☕ Café Negro con Ganoderma</h3>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIkljvPBv4rMdZ746oKl8hJRTHjAbTn7a83ijwhH0wFqp-zZkkFNzje50&s=10" alt="Café Negro con Ganoderma" style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">  
+                <p class="descripcion">Aroma intenso y sabor puro del café infusionado con Ganoderma. Menos cafeína que un café común, pero con grandes beneficios para tu salud.</p>
+                <p class="precio">💰 Bs. 8</p>
+            </div>
+
+            <div class="producto">
+                <h3>🥛 Café con Leche y Ganoderma</h3>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCN51sKKHqISjgtecWn0QORXa58eYrZBJZ5uwpRhENXMTDWU743U3y48gT&s=10" alt="Café con Leche y Ganoderma" style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">  
+                <p class="descripcion">Suave, cremoso y reconfortante. La combinación perfecta de leche calientita con café y el poder del Ganoderma en cada taza.</p>
+                <p class="precio">💰 Bs. 10</p>
+            </div>
+
+            <div class="producto">
+                <h3>🍵 Capuchino Caliente con Ganoderma</h3>
+                <img src="https://s.alicdn.com/@sc04/kf/A72f6e846c3d344f9bfe6a354790413f67/Hot-Sale-Vietnam-Extracted-Dried-Ganoderma-Cappuccino-Instant-Coffee-Bag-Spray-Green-Life-Coffee-Products-Mellow-Free-Sample.png_300x300.jpg" alt="Capuchino Caliente con Ganoderma" style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">  
+                <p class="descripcion">Esponjoso y aromático. El clásico capuchino que te gusta, ahora con los beneficios del hongo medicinal. Calidez y salud juntas.</p>
+                <p class="precio">💰 Bs. 10</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTOS GANODERMA -->
+    <section id="ganoderma" class="seccion-ganoderma">
+        <h2>🍄 Productos con Ganoderma — Naturaleza en su mejor forma</h2>
+        <div class="inicio-contenido" style="margin-bottom: 35px;">
+            <p>El <strong>Ganoderma lucidum</strong> es un hongo venerado en Asia por más de 2 milenios. Conocido como el "hongo de la inmortalidad", ayuda a fortalecer el sistema inmunológico, combatir el cansancio y mantener el equilibrio natural del cuerpo.</p>
+        </div>
+
+        <div class="productos">
+            <div class="producto">
+                <h3>☕ Café Negro Ganoderma</h3>
+                <img src="c:\Users\Veronica\Documents\proyecto.tm\back .jpg.jpeg"  alt="Café Negro Ganoderma"  style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">
+                <p class="descripcion">Café de grano seleccionado infusionado con extracto puro de Ganoderma. Despierta tus sentidos sin alterar tu descanso.</p>
+                <p class="precio">📦 Disponible en caja 150 a 165 </p>
+            </div>
+
+            <div class="producto">
+                <h3>🥛 Café 3 en 1 con Ganoderma</h3>
+                <img src="https://i5-mx.walmartimages.com/asr/a9b04da5-b81c-4518-b560-54a312ca3a17.a31f6f714e8b514d9d55a9b73faac120.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Café 3 en 1 con Ganoderma"  style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">
+                 <p class="descripcion">es un potente suplemento natural y adaptógeno. Su principal función es fortalecer el sistema inmunológico</p>
+                <p class="precio">📦 Disponible en caja 160 a 180  </p>
+            </div>
+
+            <div class="producto">
+                <h3>🍫 Chocolate con Ganoderma</h3>
+                
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7P0tYmCB4AW3-MVojh8upng3NMjifT9z1tzHfQUe4OwY9aAjSXumo6yKL&s=10" alt="Chocolate con Ganoderma"   style= "width:100%; height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; "> 
+                <p class="descripcion">Cacao cremoso con los beneficios del Ganoderma. Una bebida reconfortante que te abraza por dentro. Ideal para las tardes frescas.</p>
+                <p class="precio">📦 Disponible en caja 170 a 190  </p>
+            </div>
+
+            <div class="producto">
+                <h3>🍵 Té de Ganoderma</h3>
+                <img src="https://m.media-amazon.com/images/I/61HlyqVOX2L._AC_UF1000,1000_QL80_.jpg" alt="Té de Ganoderma"  style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; "> 
+                <p class="descripcion">Infusión suave y relajante, sin cafeína. Ayuda a desintoxicar el cuerpo y prepararte para un descanso reparador.</p>
+                <p class="precio">📦 Disponible en caja 150 a 170  </p>
+            </div>
+
+            <div class="producto">
+                <h3>💚 Espirulina Natural</h3>
+                <img src="https://http2.mlstatic.com/D_NQ_NP_788398-MLA99491874438_112025-O.webp" alt="Espirulina Natural"   style="width:100%;height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; "> 
+                <p class="descripcion">Un superalimento completo: proteínas, vitaminas y minerales en su forma más pura. Ideal para complementar tu alimentación diaria.</p>
+                <p class="precio">🧴 Disponible en caja 160 a 180 </p>
+            </div>
+
+            <div class="producto">
+                <h3>🌿 Ganoderma en Cápsulas</h3>
+                <img src="https://www.fitoterapia.net/archivos/201802/ganoderma_180-500xXx80.jpg?1" alt="Ganoderma en Cápsulas"  style="width:100% ; height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; "> 
+                <p class="descripcion">Concentrado del hongo en cápsulas prácticas. Para un apoyo constante a tu salud. Sencillo de incorporar a tu rutina diaria.</p>
+                <p class="precio">🧴 Disponible en frasco 340 a 380  </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p style="font-size: 1.2rem; font-weight: 600; font-family: 'Playfair Display', serif;">🌿 Gana Salud ☕</p>
+        <p>Ivirgarzama, Trópico de Cochabamba — Bolivia</p>
+        <p>Información y distribución de productos con Ganoderma</p>
+        <p class="derechos">© 2026 Gana Salud — Tu salud, nuestra prioridad 💚</p>
+    </footer>
+    <link rel="stylesheet" href="estilo.css">
+    <script src="script.js"></script>
+ 
+    <!-- COPIAR DESDE AQUÍ -->
+<div class="chaco-slider-section">
+    <style>
+        .chaco-slider-section {
+            --slider-width: 700px;
+            --slider-height: 450px;
+            font-family: Arial, sans-serif;
+            margin: 30px auto;
+            max-width: var(--slider-width);
+            width: 100%;
+        }
+        .chaco-container {
+            position: relative;
+            width: 100%;
+            height: var(--slider-height);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            background-color: #1e1a15;
+        }
+        .chaco-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .chaco-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            z-index: 1;
+        }
+        .chaco-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+        .chaco-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .chaco-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+            color: #ffffff;
+            padding: 25px 20px;
+            font-size: 18px;
+            font-weight: 500;
+            z-index: 3;
+        }
+        .chaco-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.85);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .chaco-arrow:hover {
+            background-color: #ffffff;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .chaco-prev { left: 20px; }
+        .chaco-next { right: 20px; }
+        .chaco-counter {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 10;
+        }
+    </style>
+
+    <div class="chaco-container">
+        <div class="chaco-counter" id="chacoCounter">1 / 8</div>
+
+        <button class="chaco-arrow chaco-prev" onclick="moveChacoSlide(-1)">&#10094;</button>
+        <button class="chaco-arrow chaco-next" onclick="moveChacoSlide(1)">&#10095;</button>
+
+        <div class="chaco-wrapper">
+            <!-- FOTO 1 -->
+            <div class="chaco-slide active">
+                <img src="c:\Users\Veronica\Pictures\FB343_1.jpg" alt="producto 1" style="width:100% ; height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">
+                <div class="chaco-caption"> Producto Ganoderma 1</div>
+            </div>
+            <!-- FOTO 2 -->
+            <div class="chaco-slide">
+                <img src="c:\Users\Veronica\Pictures\FB094_2.jpg" alt="producto2" style="width:100% ; height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">
+                <div class=" ">Chaco dormido / Producto Ganoderma 2</div>
+            </div>
+            <!-- FOTO 3 -->
+            <div class="chaco-slide">
+                <img src="c:\Users\Veronica\Pictures" alt="producto 3"style="width:100% ; height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">
+                <div class="chaco-caption">Producto Ganoderma 3</div>
+            </div>
+            <!-- FOTO 4 -->
+            <div class="chaco-slide">
+                <img src="c:\Users\Veronica\Pictures\FB094_2.jpg" alt="producto 4"style="width:100% ; height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">
+                <div class="chaco-caption"> Producto Ganoderma 4 </div>
+            </div>
+            <!-- FOTO 5 -->
+            <div class="chaco-slide">
+                <img src="c:\Users\Veronica\Pictures\FB215_2.jpg" alt="producto 5"style="width:100% ; height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">
+                <div class="chaco-caption">Producto Ganoderma 5</div>
+            </div>B094.jpg
+            <!-- FOTO 6 -->
+            <div class="chaco-slide">
+                <img src="c:\Users\Veronica\Pictures\FB277_2.jpg" alt="producto 6"style="width:100% ; height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">
+                <div class="chaco-caption">Producto Ganoderma 6</div>
+            </div>
+            <!-- FOTO 7 -->
+            <div class="chaco-slide">
+                <img src="c:\Users\Veronica\Pictures\FB281_2.jpg" alt="producto 7"style="width:100% ; height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">
+                <div class="chaco-caption"> ProductoGanoderma 7</div>
+            </div>
+            <!-- FOTO 8 -->
+            <div class="chaco-slide">
+                <img src="c:\Users\Veronica\Pictures\FB284_2.jpg" alt="producto 8"style="width:100% ; height: auto;object-fit: contain ;border-radius: 10px;margin-bottom: 12px; ">
+                <div class="chaco-caption">Producto Ganoderma 8</div>
+            </div>p
+        </div>
+    </div>
+
+    <script>
+        let currentChacoIndex = 0;
+        const chacoSlides = document.querySelectorAll('.chaco-slide');
+        const chacoCounter = document.getElementById('chacoCounter');
+
+        function moveChacoSlide(direction) {
+            chacoSlides[currentChacoIndex].classList.remove('active');
+            currentChacoIndex += direction;
+
+            if (currentChacoIndex >= chacoSlides.length) { currentChacoIndex = 0; }
+            if (currentChacoIndex < 0) { currentChacoIndex = chacoSlides.length - 1; }
+
+            chacoSlides[currentChacoIndex].classList.add('active');
+            chacoCounter.innerText = `${currentChacoIndex + 1} / ${chacoSlides.length}`;
+        }
+    </script>
+</div>
+<!-- TERMINA AQUÍ -->
+
+</body>
+</html>
